@@ -25,3 +25,14 @@ I. Adding the meta-peridio layer to your build
 =================================================
 
 Run 'bitbake-layers add-layer meta-peridio'
+
+Configuring
+============
+
+Peridiod can produce firmware output when as a post process to the image creation.
+Configure your image to execute this command automatically by adding the following
+to your image recipe:
+
+```text
+require recipes-support/images/peridio-image.inc
+```
