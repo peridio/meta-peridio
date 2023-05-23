@@ -34,5 +34,5 @@ Configure your image to execute this command automatically by adding the followi
 to your image recipe:
 
 ```text
-require recipes-support/images/peridio-image.inc
+require recipes-core/images/peridio-image-complete.inc
 ```
