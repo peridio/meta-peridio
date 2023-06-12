@@ -1,0 +1,16 @@
+header:
+  version: 11
+
+repos:
+
+  meta-erlang:
+    url: git@github.com:meta-erlang/meta-erlang
+    refspec: 1df1b0401d6d29bab4329d16a07fb53d92a8c0e2
+    layers:
+      .:
+
+  meta-fwup:
+    url: git@github.com:fwup-home/meta-fwup
+    refspec: aeb1c8bd9a28475e9d31c8c05f272db65b6d656e
+    layers:
+      .:
