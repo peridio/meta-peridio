@@ -5,7 +5,7 @@ repos:
 
   meta-erlang:
     url: git@github.com:meta-erlang/meta-erlang
-    refspec: 1df1b0401d6d29bab4329d16a07fb53d92a8c0e2
+    refspec: bf0ec7aef4a3009ededc44c151154510d5f5c2d2
     layers:
       .:
 
