@@ -29,10 +29,11 @@ Run 'bitbake-layers add-layer meta-peridio'
 Configuring
 ============
 
-Peridiod can produce firmware output when as a post process to the image creation.
-Configure your image to execute this command automatically by adding the following
-to your image recipe:
+Peridiod can produce fwup firmware and .img images as output from your build
+by adding `fwup` and `fwup-img` to `IMAGE_FSTYPES` and adding
+`IMAGE_CLASSES += image_types_fwup` to your layer (machine | distro | image)
 
-```text
-require recipes-core/images/peridio-image-complete.inc
-```
+The `fwup` and `fwup-img` `IMAGE_FSTYPES` will look for a fwup configuration
+file in `(my-layer)/conf/peridio` directory with the name `${MACHINENAME}.fwup.conf`.
+You can override this by setting `FWUP_FILE`. More information about fwup format
+can be found at [github.com/fwup-home](https://github.com/fwup-home/fwup)
