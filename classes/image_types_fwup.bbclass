@@ -78,7 +78,7 @@ FWUP_VARS ?= " \
   PERIDIO_DATAFS_PART_MOUNTPOINT \
   PERIDIO_HOST_ROOTFS_PATH \
   PERIDIO_HOST_IMAGE_DIR \
-  PERIDIO_KEY \
+  PERIDIO_PRIVATE_KEY \
   PERIDIO_CERTIFICATE \
   FWUP_OUTPUT_NAME \
   FWUP_IMG_TASK \
@@ -152,7 +152,20 @@ addtask do_write_fwup_conf after do_image before do_image_fwup
 # to tmp/sysroots/<machine>/imgdata/<image>.fwup.env
 #
 python do_rootfs_fwup_env () {
+    key_file = d.getVar('PERIDIO_PRIVATE_KEY_FILE')
+    if key_file and os.path.isfile(key_file):
+        f = open(key_file, 'r')
+        key = f.read()
+        d.setVar('PERIDIO_PRIVATE_KEY', key)
+
+    cert_file = d.getVar('PERIDIO_CERTIFICATE_FILE')
+    if cert_file and os.path.isfile(cert_file):
+        f = open(cert_file, 'r')
+        cert = f.read()
+        d.setVar('PERIDIO_CERTIFICATE', cert)
+
     fwupvars = d.getVar('FWUP_VARS') + d.getVar('FWUP_EXTRA_VARS')
+
     if not fwupvars:
         return
 
