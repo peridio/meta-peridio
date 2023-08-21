@@ -39,7 +39,8 @@ PERIDIO_DATAFS_PART_DEVPATH ??= "${PERIDIO_DISK_DEVPATH}p4"
 PERIDIO_DATAFS_PART_TYPE ??= "${PERIDIO_DATAFS_TYPE}"
 PERIDIO_DATAFS_PART_MOUNTPOINT ??= "/data"
 
-PERIDIO_HOST_ROOTFS_PATH ??= "${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.${PERIDIO_ROOTFS_TYPE}"
+PERIDIO_ROOTFS_FILE ??= "${IMAGE_NAME}.rootfs.${PERIDIO_ROOTFS_TYPE}"
+PERIDIO_HOST_ROOTFS_DIR ??= "${IMGDEPLOYDIR}"
 PERIDIO_HOST_IMAGE_DIR ??= "${DEPLOY_DIR_IMAGE}"
 
 FWUP_OUTPUT_NAME ??= "${IMAGE_BASENAME}-${MACHINE}"
@@ -76,7 +77,8 @@ FWUP_VARS ?= " \
   PERIDIO_DATAFS_PART_DEVPATH \
   PERIDIO_DATAFS_PART_TYPE \
   PERIDIO_DATAFS_PART_MOUNTPOINT \
-  PERIDIO_HOST_ROOTFS_PATH \
+  PERIDIO_ROOTFS_FILE \
+  PERIDIO_HOST_ROOTFS_DIR \
   PERIDIO_HOST_IMAGE_DIR \
   PERIDIO_PRIVATE_KEY \
   PERIDIO_CERTIFICATE \
@@ -123,6 +125,7 @@ USING_FWUP = "${@bb.utils.contains_any('IMAGE_FSTYPES', 'fwup fwup-img', 1, '', 
 FWUP_FILE_CHECKSUM = "${@'${FWUP_FILE_FULL_PATH}:%s' % os.path.exists('${FWUP_FILE_FULL_PATH}') if '${USING_FWUP}' else ''}"
 do_image_fwup[file-checksums] += "${FWUP_FILE_CHECKSUM}"
 do_image_fwup_img[file-checksums] += "${FWUP_FILE_CHECKSUM}"
+do_write_fwup_conf[file-checksums] += "${FWUP_FILE_CHECKSUM}"
 
 # We ensure all artfacts are deployed (e.g virtual/bootloader)
 do_image_fwup[recrdeptask] += "do_deploy"
