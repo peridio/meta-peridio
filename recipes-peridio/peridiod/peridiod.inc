@@ -19,11 +19,18 @@ inherit systemd
 SYSTEMD_AUTO_ENABLE = "enable"
 SYSTEMD_SERVICE:${PN} = "peridiod.service"
 
+RDEPENDS:${PN} += "socat"
+
 FILES:${PN} += " \
   ${systemd_unitdir}/system/peridiod.service \
   ${systemd_unitdir}/system.conf.d/peridiod.conf \
   ${sysconfdir}/peridiod/peridio-cert.pem \
 "
+
+do_compile:prepend() {
+  export ERL_EI_LIBDIR="${COMPONENTS_DIR}/${TUNE_PKGARCH}/erlang/usr/lib/erlang/usr/lib"
+  export ERL_EI_INCLUDE_DIR="${COMPONENTS_DIR}/${TUNE_PKGARCH}/erlang/usr/lib/erlang/usr/include"
+}
 
 do_install:append() {
   install -d ${D}/${systemd_unitdir}/system
