@@ -5,12 +5,14 @@ repos:
 
   meta-erlang:
     url: git@github.com:meta-erlang/meta-erlang
-    refspec: e1ea2c4cb05cb19ed520924e27b9b433336425ee
+    commit: 8ebcd8a44fb8855edebe5ca05374171af8a04766
+    branch: kirkstone
     layers:
       .:
 
   meta-fwup:
     url: git@github.com:fwup-home/meta-fwup
-    refspec: aeb1c8bd9a28475e9d31c8c05f272db65b6d656e
+    commit: aeb1c8bd9a28475e9d31c8c05f272db65b6d656e
+    branch: master
     layers:
       .:
