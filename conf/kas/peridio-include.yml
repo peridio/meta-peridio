@@ -2,17 +2,9 @@ header:
   version: 11
 
 repos:
-
   meta-erlang:
-    url: https://github.com/meta-erlang/meta-erlang
-    commit: 8ebcd8a44fb8855edebe5ca05374171af8a04766
-    branch: kirkstone
-    layers:
-      .:
-
-  meta-fwup:
-    url: https://github.com/fwup-home/meta-fwup
-    commit: aeb1c8bd9a28475e9d31c8c05f272db65b6d656e
-    branch: master
+    url: https://github.com/peridio/meta-erlang
+    commit: fc740163ccab3307cf44c676d7ce32b9ffc89f1c
+    branch: scarthgap
     layers:
       .:
