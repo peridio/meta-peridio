@@ -130,8 +130,8 @@ do_write_fwup_conf[file-checksums] += "${FWUP_FILE_CHECKSUM}"
 # We ensure all artfacts are deployed (e.g virtual/bootloader)
 do_image_fwup[recrdeptask] += "do_deploy"
 do_image_fwup_img[recrdeptask] += "do_deploy"
-do_image_fwup[deptask] += "do_image_deploy"
-do_image_fwup_img[deptask] += "do_image_deploy"
+do_image_fwup[deptask] += "do_image_complete"
+
 
 do_image_fwup[depends] += "${@' '.join('%s-native:do_populate_sysroot' % r for r in ('parted', 'gptfdisk', 'dosfstools', 'mtools'))}"
 do_image_fwup_img[depends] += "${@' '.join('%s-native:do_populate_sysroot' % r for r in ('parted', 'gptfdisk', 'dosfstools', 'mtools'))}"
