@@ -7,12 +7,9 @@ Dependencies
 
   URI: https://github.com/openembedded/meta-openembedded.git
   layers: meta-oe
-  branch: kirkstone
+  branch: master
 
   URI: https://github.com/meta-erlang/meta-erlang
-  branch: kirkstone
-
-  URI: https://github.com/fwup-home/meta-fwup
   branch: master
 
 Table of Contents
@@ -37,3 +34,7 @@ The `fwup` and `fwup-img` `IMAGE_FSTYPES` will look for a fwup configuration
 file in `(my-layer)/conf/peridio` directory with the name `${MACHINENAME}.fwup.conf`.
 You can override this by setting `FWUP_FILE`. More information about fwup format
 can be found at [github.com/fwup-home](https://github.com/fwup-home/fwup)
+
+The `fwup` and `fwup-img` `do_image_` functions will need to execute after the other image
+dependencies have been deployed. To handle this, you can specify what deployed image typed
+you your fwup conf may depend on by appending to the `FWUP_IMAGE_DEPENDS` variable in your config.
