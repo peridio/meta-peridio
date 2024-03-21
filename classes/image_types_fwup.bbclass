@@ -131,11 +131,12 @@ do_write_fwup_conf[file-checksums] += "${FWUP_FILE_CHECKSUM}"
 do_image_fwup[recrdeptask] += "do_deploy"
 do_image_fwup_img[recrdeptask] += "do_deploy"
 do_image_fwup[deptask] += "do_image_complete"
+do_image_fwup[recrdeptask] += "${@' '.join('do_image_%s' % r for r in ('squashfs', 'ext4', 'tar'))}"
 
 
 do_image_fwup[depends] += "${@' '.join('%s-native:do_populate_sysroot' % r for r in ('parted', 'gptfdisk', 'dosfstools', 'mtools'))}"
 do_image_fwup_img[depends] += "${@' '.join('%s-native:do_populate_sysroot' % r for r in ('parted', 'gptfdisk', 'dosfstools', 'mtools'))}"
-do_image_fwup_img[depends] += "${IMAGE_BASENAME}:do_image_fwup"
+do_image_fwup_img[recrdeptask] += "do_image_fwup"
 
 FWUP_FILE_DEPENDS = "fwup-native syslinux-native bmaptool-native cdrtools-native btrfs-tools-native squashfs-tools-native e2fsprogs-native"
 DEPENDS += "${@ '${FWUP_FILE_DEPENDS}' if d.getVar('USING_FWUP') else '' }"
