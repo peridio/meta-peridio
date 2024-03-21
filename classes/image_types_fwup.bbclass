@@ -88,6 +88,7 @@ FWUP_VARS ?= " \
 "
 
 FWUP_EXTRA_VARS ?= ""
+FWUP_IMAGE_DEPENDS ?= "squashfs"
 
 FWUP_FILE ??= "${MACHINE}.fwup.conf"
 FWUP_SEARCH_PATH ?= "${@':'.join('%s/conf/peridio' % p for p in '${BBPATH}'.split(':'))}"
@@ -121,7 +122,7 @@ IMAGE_CMD:fwup-img () {
 }
 do_image_fwup-img[vardepsexclude] = "FWUP_FILE_FULL_PATH TOPDIR"
 
-USING_FWUP = "${@bb.utils.contains_any('IMAGE_FSTYPES', 'fwup fwup-img', 1, '', d)}"
+USING_FWUP = "${@bb.utils.contains('IMAGE_FSTYPES', 'fwup', 1, '', d)}"
 FWUP_FILE_CHECKSUM = "${@'${FWUP_FILE_FULL_PATH}:%s' % os.path.exists('${FWUP_FILE_FULL_PATH}') if '${USING_FWUP}' else ''}"
 do_image_fwup[file-checksums] += "${FWUP_FILE_CHECKSUM}"
 do_image_fwup_img[file-checksums] += "${FWUP_FILE_CHECKSUM}"
@@ -131,12 +132,11 @@ do_write_fwup_conf[file-checksums] += "${FWUP_FILE_CHECKSUM}"
 do_image_fwup[recrdeptask] += "do_deploy"
 do_image_fwup_img[recrdeptask] += "do_deploy"
 do_image_fwup[deptask] += "do_image_complete"
-do_image_fwup_img[deptask] += "do_image_complete"
-do_image_fwup_img[deptask] += "do_image_fwup"
+do_image_fwup[recrdeptask] += "${@' '.join('do_image_%s' % r for r in '${FWUP_IMAGE_DEPENDS}'.split())}"
 
 do_image_fwup[depends] += "${@' '.join('%s-native:do_populate_sysroot' % r for r in ('parted', 'gptfdisk', 'dosfstools', 'mtools'))}"
 do_image_fwup_img[depends] += "${@' '.join('%s-native:do_populate_sysroot' % r for r in ('parted', 'gptfdisk', 'dosfstools', 'mtools'))}"
-do_image_fwup_img[depends] += "${IMAGE_BASENAME}:do_image_fwup"
+do_image_fwup_img[recrdeptask] += "do_image_fwup"
 
 FWUP_FILE_DEPENDS = "fwup-native syslinux-native bmap-tools-native cdrtools-native btrfs-tools-native squashfs-tools-native e2fsprogs-native"
 DEPENDS += "${@ '${FWUP_FILE_DEPENDS}' if d.getVar('USING_FWUP') else '' }"
