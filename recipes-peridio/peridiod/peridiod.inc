@@ -19,7 +19,7 @@ inherit systemd
 SYSTEMD_AUTO_ENABLE = "enable"
 SYSTEMD_SERVICE:${PN} = "peridiod.service"
 
-RDEPENDS:${PN} += "socat"
+RDEPENDS:${PN} += "socat wireguard-tools iproute2-ss iptables"
 
 FILES:${PN} += " \
   ${systemd_unitdir}/system/peridiod.service \
@@ -36,6 +36,10 @@ do_install:append() {
   install -d ${D}/${systemd_unitdir}/system
   install -d ${D}/${sysconfdir}/peridiod
 
+  archive=$(find ${erlang_release} -name "*.gz")
+  bbnote "Removing archive from release directory: ${archive}"
+  rm -f ${archive}
+
   # systemd
   if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
     install -m 0644 ${WORKDIR}/peridiod.service \
@@ -50,7 +54,6 @@ do_install:append() {
       ${D}${sysconfdir}/profile.d/peridiod.sh
   fi
 
-  
   install -m 0644 ${WORKDIR}/peridio-cert.pem \
     ${D}/${sysconfdir}/peridiod
 }
