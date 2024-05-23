@@ -3,8 +3,8 @@ header:
 
 repos:
   meta-erlang:
-    url: https://github.com/peridio/meta-erlang
-    commit: fc740163ccab3307cf44c676d7ce32b9ffc89f1c
-    branch: scarthgap
+    url: https://github.com/meta-erlang/meta-erlang
+    commit: 52524bf30560f9664010fa9c6d31664a61a1faa2
+    branch: master
     layers:
       .:
