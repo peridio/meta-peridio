@@ -1,6 +1,6 @@
 require peridiod.inc
 
-PV = "2.5.1"
+PV = "2.5.2"
 
-SRCREV = "dfc22aa5e9db36348eb4f5e2c9ec451233dd38a8"
+SRCREV = "7b60858677d20f5ec718308a039ec4d600ce5675"
 SRCBRANCH = "main"
