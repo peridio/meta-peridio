@@ -4,6 +4,8 @@ SECTION = "support"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1382e2b09353b0c5786ffa472a8fcf36"
 
+PTEST_ENABLE = "0"
+
 S = "${WORKDIR}/git"
 
 SRC_URI = " \
