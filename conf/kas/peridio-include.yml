@@ -4,7 +4,7 @@ header:
 repos:
   meta-erlang:
     url: https://github.com/meta-erlang/meta-erlang
-    commit: c67a956c411c311d9def4f81f9fe3b7db437a91d
+    commit: c30d2619e930ad57ece0aa038c14bf285a363a48
     branch: scarthgap
     layers:
       .:

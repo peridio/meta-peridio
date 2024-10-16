@@ -1,6 +1,6 @@
 require peridiod.inc
 
-PV = "3.0.0-rc.4"
+PV = "3.0.0"
 
-SRCREV = "f7591cc23f93d4f227bb2546af8c21afe84e94e9"
-SRCBRANCH = "main"
+SRCREV = "21f1db16ecd1d451e6766ab94b7ae39b44139813"
+SRCBRANCH = "rel-v3.0.0"
