@@ -5,7 +5,7 @@ repos:
 
   meta-erlang:
     url: https://github.com/meta-erlang/meta-erlang
-    commit: dfba265a84e60d1bbb2b84aaec4c4ee6f3eb4919
+    commit: 97a4789151155fe937521b4588879bad1ba25335
     branch: kirkstone
     layers:
       .:
