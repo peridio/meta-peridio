@@ -1,4 +1,4 @@
 BBCLASSEXTEND =+ "native nativesdk"
 
-PV = "1.10.1"
-SRCREV = "6836c6452b87f4dac0c010e82b5c56510332e741"
+PV = "1.12.0"
+SRCREV = "3dd1798815c206a3c05e8cfbd51de99b2f1dd930"
