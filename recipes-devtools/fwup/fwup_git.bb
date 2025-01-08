@@ -6,11 +6,11 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 DEPENDS = "libconfuse libarchive libsodium zlib pkgconfig-native"
 
-SRC_URI = "git://github.com/fhunleth/fwup.git;protocol=https;branch=main;"
+SRC_URI = "git://github.com/fwup-home/fwup.git;protocol=https;branch=main;"
 
 # Modify these as desired
-PV = "1.10.1"
-SRCREV = "6836c6452b87f4dac0c010e82b5c56510332e741"
+PV = "1.12.0"
+SRCREV = "3dd1798815c206a3c05e8cfbd51de99b2f1dd930"
 
 S = "${WORKDIR}/git"
 
