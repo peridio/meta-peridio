@@ -4,7 +4,7 @@ header:
 repos:
   meta-erlang:
     url: https://github.com/meta-erlang/meta-erlang
-    commit: 1186bd75e9eca09d80d8b5ac8dc1deb3ed906a29
+    commit: d61ae67de63ecd57ec8ca54f01d01a8563320e66
     branch: master
     layers:
       .:
