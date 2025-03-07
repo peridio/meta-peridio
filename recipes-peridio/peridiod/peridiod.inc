@@ -21,7 +21,11 @@ inherit systemd
 SYSTEMD_AUTO_ENABLE = "enable"
 SYSTEMD_SERVICE:${PN} = "peridiod.service"
 
-RDEPENDS:${PN} += "socat wireguard-tools iproute2-ss iptables"
+DEPENDS += "libmnl"
+
+PACKAGECONFIG ??= "remote-access-tunnels remote-shell"
+PACKAGECONFIG[remote-access-tunnels] = ",,,iproute2 iptables iproute2-ss wireguard-tools"
+PACKAGECONFIG[remote-shell] = ",,,socat"
 
 FILES:${PN} += " \
   ${systemd_unitdir}/system/peridiod.service \
